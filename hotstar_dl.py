@@ -17,7 +17,7 @@ def video_extractor(url):
             "x-hs-appversion": "7.15.1",
             "x-hs-platform": "web",
             "x-hs-usertoken": user_token,
-            "user-agen": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36",
         },
         params={
             "desired-config": "audio_channel:stereo|dynamic_range:sdr|encryption:plain|ladder:tv|package:dash|resolution:hd|subs-tag:HotstarVIP|video_codec:vp9",

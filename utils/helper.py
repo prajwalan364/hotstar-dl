@@ -7,6 +7,8 @@ import json
 import requests
 import re
 import os
+from ffmpeg_progress_yield import FfmpegProgress
+from tqdm import tqdm
 
 _AKAMAI_ENCRYPTION_KEY = b"\x05\xfc\x1a\x01\xca\xc9\x4b\xc4\x12\xfc\x53\x12\x07\x75\xf9\xee"
 
@@ -37,8 +39,28 @@ def generate_user_token():
 
 def ffmpeg_download(hls_url, url):
     name = url.split('/')[5]
-    cmd = 'ffmpeg -referer {} -i "{}" -c copy "{} [1080p]".mp4'.format(url, hls_url, name)
-    os.system(cmd)
+    cmd = [
+        "ffmpeg",
+        "-referer",
+        url,
+        "-i",
+        hls_url,
+        "-preset",
+        "fast",
+        "{}[1080p].mp4".format(name),
+    ]
+    ff = FfmpegProgress(cmd)
+    with tqdm(
+        total=100,
+        position=1,
+        desc="Downloading",
+    ) as pbar:
+        for progress in ff.run_command_with_progress():
+            pbar.update(progress - pbar.n)
+
+
+# cmd = 'ffmpeg -referer {} -i "{}" -c copy "{} [1080p]".mp4'.format(url, hls_url, name)
+# os.system(cmd)
 
 
 '''
