@@ -7,7 +7,7 @@ from utils.helper import generate_hmac_id, generate_user_token, ffmpeg_download
 
 
 def video_extractor(url):
-    id = url.split("/")[6]
+    id = url.split("/").pop()
     auth = generate_hmac_id()
     user_token = generate_user_token()
     response = requests.get(
