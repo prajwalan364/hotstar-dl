@@ -12,7 +12,6 @@ from tqdm import tqdm
 
 _AKAMAI_ENCRYPTION_KEY = b"\x05\xfc\x1a\x01\xca\xc9\x4b\xc4\x12\xfc\x53\x12\x07\x75\xf9\xee"
 
-
 def generate_hmac_id():
     st = int(time.time())
     exp = st + 6000
@@ -61,7 +60,6 @@ def ffmpeg_download(hls_url, url):
 
 # cmd = 'ffmpeg -referer {} -i "{}" -c copy "{} [1080p]".mp4'.format(url, hls_url, name)
 # os.system(cmd)
-
 
 '''
 

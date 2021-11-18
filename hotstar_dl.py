@@ -45,10 +45,11 @@ def main():
         video_data = video_extractor(url)
         playBackSets = video_data["data"]["playBackSets"]
         for playBackSet in playBackSets:
-            if playBackSet["tagsCombination"] == "audio_channel:stereo;dynamic_range:sdr;encryption:plain;package:hls;resolution:fhd":
+            if "encryption:plain;ladder:phone;package:hls" in playBackSet["tagsCombination"]:
                 hls_url = playBackSet["playbackUrl"]
         ffmpeg_download(hls_url, url)
 
 
 if __name__ == '__main__':
     main()
+
